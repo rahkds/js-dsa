@@ -88,7 +88,8 @@ class DoubleLinkedList {
             } else {
                 this.head = node.next;
             }
-            
+        } else if(this.tail === node) {
+            this.tail = node.prev;
         }
         if(prev) {
             prev.next = next;
