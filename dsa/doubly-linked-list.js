@@ -9,9 +9,11 @@ class Node {
 class DoubleLinkedList {
     constructor(){
         this.head = this.tail = null;
+        this.size = 0;
     }
     
     push_back(value) {
+        this.size++;
         let newNode = new Node(value);
         if(this.head == null) {
             this.head = this.tail = newNode;
@@ -20,15 +22,16 @@ class DoubleLinkedList {
         this.tail.next = newNode;
         newNode.prev = this.tail;
         this.tail = this.tail.next;
+        
     }
     
     push_front(value) {
+        this.size++;
         let newNode = new Node(value);
         if(this.head == null) {
             this.head = this.tail = newNode;
             return;
         } 
-        
         newNode.next = this.head;
         this.head.prev = newNode;
         this.head = newNode;
@@ -41,6 +44,7 @@ class DoubleLinkedList {
     
     pop_back() {
         if(this.isEmpty()) return;
+        this.size--;
         if(this.head === this.tail) {
             this.head = this.tail = null;
             return;
@@ -54,6 +58,7 @@ class DoubleLinkedList {
     
     pop_front() {
         if(this.isEmpty()) return;
+        this.size--;
         if(this.head === this.tail) {
             this.head = this.tail = null;
             return;
@@ -74,6 +79,7 @@ class DoubleLinkedList {
     
     erase(node) {
         if(!node) return;
+        this.size--;
         let prev = node.prev;
         let next = node.next;
         if(this.head === node) {
@@ -101,6 +107,10 @@ class DoubleLinkedList {
             temp = temp.next;
         }
         console.log(arr);
+    }
+
+    length() {
+        return this.size;
     }
 }
 
